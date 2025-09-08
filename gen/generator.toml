@@ -1,0 +1,26 @@
+[general]
+library_name = "libplutobook"
+output_file_path = "../src/PlutoBook.jl"
+module_name = "PlutoBook"
+jll_pkg_name = "PlutoBook_jll"
+export_symbol_prefixes = ["PLUTOBOOK_", "plutobook_"]
+prologue_file_path = "prologue.jl"
+epilogue_file_path = "epilogue.jl"
+
+output_ignorelist = [ 
+    "PLUTOBOOK_EXPORT",
+    "PLUTOBOOK_IMPORT",
+    "PLUTOBOOK_API",
+  
+]
+
+[codegen.macro]
+macro_mode = "aggresive"
+
+functionlike_macro_includelist = [
+    "PLUTOBOOK_VERSION_ENCODE",
+    "PLUTOBOOK_VERSION_STRINGIZE",
+]
+
+add_comment_for_skipped_macro = true
+ignore_pure_definition = false
