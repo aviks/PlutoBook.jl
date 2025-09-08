@@ -11,6 +11,9 @@ output_ignorelist = [
     "PLUTOBOOK_EXPORT",
     "PLUTOBOOK_IMPORT",
     "PLUTOBOOK_API",
+    "PLUTOBOOK_UNITS_CM",
+    "PLUTOBOOK_UNITS_MM",
+    "PLUTOBOOK_UNITS_PX",
   
 ]
 

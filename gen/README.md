@@ -1,9 +1,13 @@
 ## Generate the code using Clang
 
-In this directory:
+In this directory: 
 ```
 julia --project=.\Project.toml .\generator.jl
 ```
+
+### Manual Changes
+
+Replace: `PLUTOBOOK_PAGE_SIZE_NAMED\(([A-Z0-9]*)\)` with:`PLUTOBOOK_PAGE_SIZE_NAMED("$1") `
 
 ### Maybe TODO
 
