@@ -2,12 +2,9 @@
 CurrentModule = PlutoBook
 ```
 
-```@index
-```
-
 # PlutoBook.jl
 
-A Julia wrapper for the [PlutoBook](https://github.com/plutoprint/plutobook) C++ library - a robust HTML rendering engine for paged media that converts HTML/XML content to PDF documents and bitmap images.
+A Julia wrapper for the [PlutoBook](https://github.com/plutoprint/plutobook) C++ library - a robust HTML rendering engine for paged media that converts HTML/XML content to PDF documents and bitmap images.  Much of this documentation is copied from PlutoBook's own documentation. 
 
 ## Overview
 
@@ -22,12 +19,15 @@ PlutoBook.jl provides a Julia interface to the PlutoBook C++ library, which feat
 - **Image format support**: JPEG, PNG, WEBP, GIF, BMP, TGA
 - **Memory efficient**: Optimized for performance with minimal memory footprint
 
+A detailed list of features supported the current version of the underlying library can be seen on the [PlutoBook Features](https://github.com/plutoprint/plutobook/blob/main/FEATURES.md) page.
+
 ## Installation
 
 ```julia
 using Pkg
 Pkg.add("PlutoBook")
 ```
+A [prebuilt binary](https://github.com/JuliaBinaryWrappers/PlutoBook_jll.jl) of the PlutoBook C++ library is installed automatically.
 
 ## Basic Usage
 
@@ -39,17 +39,23 @@ using PlutoBook
 # HTML content to render
 html_content = """
 <!DOCTYPE html>
-<html>
+<html lang=\"la\">
 <head>
-    <title>My Document</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 40px; }
-        h1 { color: #333; }
-    </style>
+<meta charset=\"UTF-8\">
+<title>Magnum Scopulum Corallinum</title>
+<style>
+    body { font-family: \"Segoe UI\", sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; color: #222; }
+    h1 { font-size: 2.5em; margin-bottom: 20px; }
+    img { width: 100%; border-radius: 6px; margin-bottom: 20px; }
+    p { font-size: 1.05em; text-align: justify; }
+</style>
 </head>
 <body>
-    <h1>Hello PlutoBook!</h1>
-    <p>This is a simple HTML document rendered to PDF.</p>
+<h1>Magnum Scopulum Corallinum</h1>
+<img src=\"https://picsum.photos/id/128/800/400\" alt=\"Magnum Scopulum Corallinum\">
+<p>Magnum Scopulum Corallinum est maximum systema scopulorum corallinorum in mundo, quod per plus quam 2,300 chiliometra oram septentrionalem-orientalem Australiae extenditur. Ex milibus scopulorum individualium et centenis insularum constat, e spatio videri potest et inter mirabilia naturalia mundi numeratur.</p>
+<p>Domus est incredibili diversitati vitae marinae, cum plus quam 1,500 speciebus piscium, 400 generibus corallii, et innumerabilibus aliis organismis. Partem vitalem agit in salute oecosystematis marini conservanda et sustentat victum communitatum litoralium per otium et piscationem.</p>
+<p>Quamquam pulchritudinem ac significationem oecologicam praebet, Magnum Scopulum Corallinum minas continenter patitur ex mutatione climatis, pollutione, et nimia piscatione. Eventus albi corallii ex temperaturis marinis crescentibus magnam partem scopuli nuper laeserunt. Conatus conservatorii toto orbe suscipiuntur ad hunc magnificum oecosystema subaquaneum tuendum et restaurandum.</p>
 </body>
 </html>
 """
@@ -71,7 +77,20 @@ plutobook_write_to_pdf(book, "output.pdf")
 plutobook_destroy(book)
 ```
 
-### Rendering Individual Pages to Images
+Example output:
+
+```@raw html 
+<img width="1800" height="550" alt="Explore.png" src="./assets/plutobook-pdf.png" />
+```
+
+---
+
+### Page Rendering
+
+PlutoBook supports precise page-level rendering, allowing individual pages to be drawn onto different canvas types, including bitmap canvases and PDF outputs. 
+
+This example loads [**Alice’s Adventures in Wonderland**](https://www.gutenberg.org/ebooks/11) from Project Gutenberg, renders the first four pages as PNG images, and also exports them as a PDF.
+
 
 ```julia
 using PlutoBook
@@ -84,7 +103,7 @@ book = plutobook_create(
 )
 
 # Load HTML from file
-plutobook_load_url(book, "document.html", "", "")
+plutobook_load_url(book, "Explore.html", "", "")
 
 # Get page dimensions
 page_size = plutobook_get_page_size(book)
@@ -116,7 +135,92 @@ plutobook_canvas_destroy(canvas)
 plutobook_destroy(book)
 ```
 
-### Document-Level Rendering
+This code produces the following images:
+
+| `page-1.png` | `page-2.png` | `page-3.png` |`page-4.png` |
+| --- | --- | --- | --- |
+| ![page-1](./assets/page-1.png) | ![page-2](./assets/page-2.png) | ![page-3](./assets/page-3.png) | ![page-4](./assets/page-4.png) |
+
+---
+
+### Document Rendering
+
+PlutoBook supports full-document rendering, drawing the entire content flow as a single continuous layout. 
+
+The example below demonstrates how to perform a full-document render of an HTML file into a bitmap image. The document's actual rendered dimensions are measured first, and then a canvas of that size is created to ensure the entire layout is captured without clipping. Finally, the rendered result is saved as a PNG image.
+
+
+```@raw html
+<details closed><summary>Explore.html</summary>
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Explore Life Through Moments</title>
+  <style>
+    body {
+      display: flex;
+      background: #f7f7f7;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .section p {
+      margin: 0 0 24px;
+      font-size: 1.1rem;
+      color: #555;
+      text-align: center;
+      max-width: 400px;
+    }
+
+    .section img {
+      max-width: 100%;
+      max-height: 350px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <h2>Nature</h2>
+    <p>Relax in the beauty of untouched landscapes and flourishing greenery. Nature inspires and calms the mind.</p>
+    <img src="https://picsum.photos/id/190/500/350" alt="Nature">
+  </section>
+  <section class="section">
+    <h2>City Life</h2>
+    <p>Discover the energy and excitement of urban environments. Cities pulse with opportunity and culture.</p>
+    <img src="https://picsum.photos/id/392/500/350" alt="City">
+  </section>
+  <section class="section">
+    <h2>Adventure</h2>
+    <p>Seek new horizons with every journey. Adventure is about embracing the unknown and living boldly.</p>
+    <img src="https://picsum.photos/id/177/500/350" alt="Adventure">
+  </section>
+</body>
+</html>
+```
+
+```@raw html
+</details>
+```
 
 ```julia
 using PlutoBook
@@ -145,6 +249,13 @@ plutobook_image_canvas_write_to_png(canvas, "full_document.png")
 plutobook_canvas_destroy(canvas)
 plutobook_destroy(book)
 ```
+
+This creates the following output:
+
+```@raw html 
+<img width="1800" height="550" alt="Explore.png" src="./assets/Explore.png" />
+```
+---
 
 ## Page Sizes and Units
 
@@ -227,3 +338,7 @@ plutobook_write_to_pdf_range(book, "partial.pdf", 1, 4, 1)
 - `plutobook_get_page_size(book)` - Get page size
 - `plutobook_version_string()` - Get library version
 
+
+## Acknowledgements
+
+Thanks to the [PlutoBook developers](https://github.com/plutoprint/plutobook/graphs/contributors) for creating creating the library. The code in this package is a direct wrapper of the interfaces of the C/C++ library. Much of this documentation is also directly inspired by the PlutoBook docs. The PlutoBook code and documentation are [released under the MIT license](https://github.com/plutoprint/plutobook/blob/main/LICENSE). 

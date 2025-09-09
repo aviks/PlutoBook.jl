@@ -102,7 +102,7 @@ end
     book = plutobook_create(page_size, PLUTOBOOK_PAGE_MARGINS_NONE, PLUTOBOOK_MEDIA_TYPE_SCREEN)
 
     # Load the HTML content from file with a custom user style
-    plutobook_load_url(book, "Explore Life Through Moments.html", "body { border: 1px solid gray }", "")
+    plutobook_load_url(book, "Explore.html", "body { border: 1px solid gray }", "")
 
     # Compute the full document dimensions after layout
     width = ceil(plutobook_get_document_width(book))

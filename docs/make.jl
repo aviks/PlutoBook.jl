@@ -5,7 +5,7 @@ DocMeta.setdocmeta!(PlutoBook, :DocTestSetup, :(using PlutoBook); recursive=true
 
 makedocs(;
     modules=[PlutoBook],
-    authors="Avik Sengupta <avik@sengupta.net> and contributors",
+    authors="Avik Sengupta and contributors",
     sitename="PlutoBook.jl",
     format=Documenter.HTML(;
         edit_link="main",
@@ -14,5 +14,6 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "API" => "api.md",
+        "CLI Tools" => "cli.md",
     ],
 )
