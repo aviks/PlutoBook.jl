@@ -7,7 +7,8 @@ julia --project=.\Project.toml .\generator.jl
 
 ### Manual Changes
 
-Replace: `PLUTOBOOK_PAGE_SIZE_NAMED\(([A-Z0-9]*)\)` with:`PLUTOBOOK_PAGE_SIZE_NAMED("$1") `
+* Replace: `\sPLUTOBOOK_PAGE_SIZE_NAMED\(([A-Z0-9]*)\)` with:`PLUTOBOOK_PAGE_SIZE_NAMED("$1") `
+* Add docstrings to `cairo_t` and `cairo_surface_t` 
 
 ### Maybe TODO
 

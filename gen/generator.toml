@@ -6,6 +6,7 @@ jll_pkg_name = "PlutoBook_jll"
 export_symbol_prefixes = ["PLUTOBOOK_", "plutobook_"]
 prologue_file_path = "prologue.jl"
 epilogue_file_path = "epilogue.jl"
+extract_c_comment_style = "doxygen"
 
 output_ignorelist = [ 
     "PLUTOBOOK_EXPORT",

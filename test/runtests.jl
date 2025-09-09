@@ -1,6 +1,14 @@
 using PlutoBook
 using Test
 
+@testset "Basic" begin
+    @test PLUTOBOOK_VERSION > 100
+    @test plutobook_version() > 100
+    @test !isempty(unsafe_string(plutobook_build_info()))
+    @test !isempty(unsafe_string(plutobook_version_string()))
+
+end
+
 @testset "Hello" begin
     kHTMLContent = """
         <!DOCTYPE html>
