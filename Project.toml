@@ -1,7 +1,7 @@
 name = "PlutoBook"
 uuid = "76e9aec1-d984-498e-955d-b16e80c2ab71"
 authors = ["Avik Sengupta <avik@sengupta.net> and contributors"]
-version = "1.0.0-DEV"
+version = "1.0.0"
 
 [deps]
 CEnum = "fa961155-64e5-5f13-b03f-caf6b980ea82"
