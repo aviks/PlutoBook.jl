@@ -47,3 +47,8 @@ For detailed usage examples, API reference, and advanced features, see the [docu
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+>[!NOTE]  
+>This package is named after the upstream library that it wraps. It has no relation to the [Pluto](https://plutojl.org/), the wonderful reactive notebook environment in Julia. 
