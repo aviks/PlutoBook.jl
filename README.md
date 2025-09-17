@@ -1,7 +1,7 @@
 # PlutoBook.jl
 
 [![Build Status](https://github.com/aviks/PlutoBook.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/aviks/PlutoBook.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![version](https://juliahub.com/docs/GameZero/version.svg)](https://juliahub.com/ui/Packages/GameZero/tTDGf)
+[![version](https://juliahub.com/docs/PlutoBook/version.svg)](https://juliahub.com/ui/Packages/General/PlutoBook)
 [![Docs Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://docs.juliahub.com/General/PlutoBook/stable/)
 
 
