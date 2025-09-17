@@ -1,6 +1,10 @@
 # PlutoBook.jl
 
 [![Build Status](https://github.com/aviks/PlutoBook.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/aviks/PlutoBook.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![version](https://juliahub.com/docs/GameZero/version.svg)](https://juliahub.com/ui/Packages/GameZero/tTDGf)
+[![Docs Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://docs.juliahub.com/General/PlutoBook/stable/)
+
+
 
 A Julia wrapper for the [PlutoBook](https://github.com/plutoprint/plutobook) C++ library - a robust HTML rendering engine that converts HTML/XML content to PDF documents and bitmap images.
 
@@ -42,7 +46,7 @@ plutobook_destroy(book)
 
 ## Documentation
 
-For detailed usage examples, API reference, and advanced features, see the [documentation](https://aviks.github.io/PlutoBook.jl/).
+For detailed usage examples, API reference, and advanced features, see the [documentation](https://docs.juliahub.com/General/PlutoBook/stable/).
 
 ## License
 
