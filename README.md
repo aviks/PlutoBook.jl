@@ -33,12 +33,14 @@ html = """
 <!DOCTYPE html>
 <html><body>
 <h1>Hello PlutoBook!</h1>
-<p>Converting HTML to PDF with Julia.</p>
+<p>Converting HTML to PDF with Julia & PlutoBook.</p>
 </body></html>
 """
 
 # Create book and render to PDF
-book = plutobook_create(PLUTOBOOK_PAGE_SIZE_A4, PLUTOBOOK_PAGE_MARGINS_NORMAL, PLUTOBOOK_MEDIA_TYPE_PRINT)
+book = plutobook_create(PLUTOBOOK_PAGE_SIZE_A4, 
+                        PLUTOBOOK_PAGE_MARGINS_NORMAL, 
+                        PLUTOBOOK_MEDIA_TYPE_PRINT)
 plutobook_load_html(book, html, -1, "", "", "")
 plutobook_write_to_pdf(book, "output.pdf")
 plutobook_destroy(book)
