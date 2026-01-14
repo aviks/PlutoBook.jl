@@ -7,6 +7,7 @@ makedocs(;
     modules=[PlutoBook],
     authors="Avik Sengupta and contributors",
     sitename="PlutoBook.jl",
+    repo = GitHub("aviks", "PlutoBook.jl"),
     format=Documenter.HTML(;
         edit_link="main",
         assets=String[],
